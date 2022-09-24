@@ -9,6 +9,9 @@ import path, {dirname} from 'path';
 import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+// Configuration Module
+import { Secret } from "../config/config.js";
+
 // Import Router
 import indexRouter from './routes/index.route.server.js';
 
@@ -25,7 +28,7 @@ app.use(express.urlencoded({ extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(session({
-    secret: 'MySecret',
+    secret: Secret,
     saveUninitialized: false,
     resave: false
 }));
